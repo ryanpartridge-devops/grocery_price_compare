@@ -1,0 +1,17 @@
+# Debug output
+debug_screenshots/
+
+# Credentials, sessions, captured headers
+metro_cookies.json
+loblaw_api_headers.json
+metro_profile/
+metro_profile_run/
+.env
+*.env
+
+# Logs and generated files
+*.log
+__pycache__/
+*.pyc
+venv/
+.venv/

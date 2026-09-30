@@ -1,0 +1,896 @@
+{
+  "items": [
+    {
+      "id": "4db70c73-5cee-4229-9b10-c6d9a8541927",
+      "name": "Boneless Chicken Breast",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/free-from-boneless-skinless-chicken-breasts/p/21668770_KG?source=nspt&search-bar=Boneless+Chicken+Breast&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/chicken-breast-boneless-skinless-club-pack/p/20028450_KG?source=nspt&search-bar=Boneless+Chicken+Breast&storeId=7288&cartId=382d4e3a-b8e9-4adc-8163-1938e1cf0aed"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/value-pack/fresh-market/meat-deli-fish/boneless-trimmed-chicken-breasts/p/213217",
+          "https://www.metro.ca/en/online-grocery/aisles/meat-poultry/chicken-turkey/breasts/boneless-skinless-chicken-breasts/p/221013"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/meat-poultry/chicken-turkey/breasts/skinless-boneless-chicken-breasts/p/201918"
+        ]
+      }
+    },
+    {
+      "id": "d7432a91-9cd3-43ae-9ed6-1fe0d14b4ff7",
+      "name": "Bananas",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/bananas-bunch/p/20175355001_KG?source=nspt&search-bar=Banana&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/bananas-bunch/p/20175355001_KG?source=nspt&search-bar=Banana&storeId=7288&cartId=382d4e3a-b8e9-4adc-8163-1938e1cf0aed"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/fruits/bananas-plantains/banana/p/4011"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/fruits/bananas-plantains/banana/p/4011"
+        ]
+      }
+    },
+    {
+      "id": "bf4e9d89-33eb-45b0-a380-877cf1cfad71",
+      "name": "Liberte Greek Yogurt - Strawberry",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/greek-0-yogurt-4-pack-strawberry-high-protien-and/p/20786948_EA?source=sptd&search-bar=Liberte+Greek&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/greek-0-yogurt-4-pack-strawberry-high-protien-and/p/20786948_EA?source=sptd&search-bar=Liberte+Greek&storeId=7288&cartId=382d4e3a-b8e9-4adc-8163-1938e1cf0aed"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/yogurt/greek-yogurts/0-strawberry-yogurt/p/065684005383"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/yogurt/multipacks/0-strawberry-yogurt/p/065684005383"
+        ]
+      }
+    },
+    {
+      "id": "2a6d65e9-9e86-4d6c-9b0d-c4ca68ad3f1a",
+      "name": "Natrel 2% Milk 2L",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/fine-filtered-2-milk/p/20301315004_EA?source=nspt&search-bar=natrel+2%25milk&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/fine-filtered-2-milk/p/20301315004_EA?source=nspt&search-bar=Natrel+Milk&storeId=7288&cartId=bc8f6b63-77d6-4520-a54f-0670fb99b961"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/milk-cream-butter/2-whole-milk/2-milk/p/064420010124"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/milk-cream-butter/2-whole-milk/2-milk/p/064420010124"
+        ]
+      }
+    },
+    {
+      "id": "1a9018e1-a843-43a2-bd7e-ff6c50a74329",
+      "name": "Tomato",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/tomato-beefsteak-red/p/20426141001_KG?source=nspt",
+          "https://www.maxi.ca/en/tomato-on-the-vine-red-1-bunch/p/20026703001_KG?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/tomato-beefsteak-red/p/20426141001_KG?source=nspt",
+          "https://www.provigo.ca/en/tomato-on-the-vine-red-1-bunch/p/20026703001_KG?source=nspt",
+          "https://www.provigo.ca/en/savoura-red-tomato/p/20959122001_KG?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/tomatoes-cucumber/hothouse-red-tomato/p/4799"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/tomatoes-cucumber/hothouse-red-tomato/p/4799",
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/tomatoes-cucumber/red-cluster-tomatoes/p/4664"
+        ]
+      }
+    },
+    {
+      "id": "8180e38a-45f5-4dc1-9412-8e3286375906",
+      "name": "Avocado",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/avocado/p/21097012001_EA?source=nspt&search-bar=Avocado&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/avocado/p/21097012001_EA?source=nspt&navid=flyout-L2-my-shop"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/fruits/avocadoes-exotic-fruits/avocado/p/4770"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/fruits/avocadoes-exotic-fruits/hass-avocado/p/4770"
+        ]
+      }
+    },
+    {
+      "id": "7cd3a853-6481-4e25-b5a5-1df6a12c8f52",
+      "name": "Popcorn Kernels",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/original-gourmet-popping-corn-kernels/p/20308686_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/original-gourmet-popping-corn-kernels/p/20308686_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/snacks/salty-snacks/popcorn-kernels/popcorn-kernels/p/058807488163"
+        ],
+        "superc": []
+      }
+    },
+    {
+      "id": "fbadb494-a024-46e7-9da1-2047d1877fe3",
+      "name": "Blackberries",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/blackberries-half-pint/p/20051015001_EA?source=nspt&search-bar=Blackberries&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/blackberries-half-pint/p/20051015001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/fruits/berries-cherries/blackberries/p/033383240008"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/fruits/berries-cherries/blackberries/p/033383240008"
+        ]
+      }
+    },
+    {
+      "id": "a8893e22-5923-46c7-a424-a97d633048be",
+      "name": "Spinach",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/cooking-spinach/p/20959677_EA?source=nspt&search-bar=spinach&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/cooking-spinach/p/20959677_EA?source=nspt&search-bar=Spinach&storeId=7288&cartId=382d4e3a-b8e9-4adc-8163-1938e1cf0aed"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/lettuce-leafy-vegetables/bag-of-spinach/p/059749899536"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/lettuce-leafy-vegetables/spinach/p/033383652016"
+        ]
+      }
+    },
+    {
+      "id": "57a8e7ad-2e10-40d7-bb4f-96118fd86a2e",
+      "name": "Green Pepper",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/sweet-green-peppers/p/20425893001_KG?source=nspt&search-bar=green+pepper&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/sweet-green-peppers/p/20425893001_KG?source=nspt&search-bar=green+pepper&storeId=7288&cartId=382d4e3a-b8e9-4adc-8163-1938e1cf0aed"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/green-bell-pepper/p/4065"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/green-bell-pepper/p/4065"
+        ]
+      }
+    },
+    {
+      "id": "d3f609bc-529a-415c-92fb-66fd3e81ab99",
+      "name": "Red Pepper",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/red-peppers/p/20007535001_KG?source=nspt&search-bar=red+pepper&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/red-peppers/p/20007535001_KG?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/hothouse-red-bell-pepper/p/4688"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/hothouse-red-bell-pepper/p/4688"
+        ]
+      }
+    },
+    {
+      "id": "0f06c39c-d7f5-4076-b5ff-4c396ff38e9c",
+      "name": "Pizza Sauce",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/regular-pizza-sauce/p/20321150001_EA?source=nspt&search-bar=gatuso+pizza+sauce&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/regular-pizza-sauce/p/20321150001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/canned-jarred/pasta-pasta-sauces/original-pizza-sauce/p/064200336116"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/canned-jarred/pasta-pasta-sauces/original-pizza-sauce/p/064200336116"
+        ]
+      }
+    },
+    {
+      "id": "6787408d-9dc6-4f5c-89bf-300af18c8ef0",
+      "name": "Balsamic Vinegar & Basil Triscuits",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/triscuit-balsamic-vinegar-basil-crackers/p/21030764_EA?source=nspt&search-bar=Triscuits&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/triscuit-balsamic-vinegar-basil-crackers/p/21030764_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/snacks/salty-snacks/crackers/basil-and-balsamic-vinegar-flavoured-crackers/p/066721007506"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/snacks/salty-snacks/crackers/basil-and-balsamic-vinegar-flavoured-crackers/p/066721007506"
+        ]
+      }
+    },
+    {
+      "id": "9f372762-f3b0-433c-b4fd-5062a7fd0818",
+      "name": "Whole Wheat Bread",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/thick-slice-100-whole-wheat-bread/p/20322326_EA?source=sptd",
+          "https://www.maxi.ca/en/whole-wheat-italian-thick-sliced-bread/p/21666666_EA?source=nspt&search-bar=Whole+Wheat+bread&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/thick-slice-100-whole-wheat-bread/p/20322326_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/thick-sliced-whole-wheat-bread/p/068721003885",
+          "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/whole-wheat-sliced-bread/p/059072051267"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/value-pack/fresh-market/bakery/whole-wheat-italian-bread/p/059749917018",
+          "https://www.superc.ca/en/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/thick-sliced-whole-wheat-bread/p/068721003885"
+        ]
+      }
+    },
+    {
+      "id": "050ee861-09de-4d50-a152-5247287ce087",
+      "name": "Raspberries",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/raspberries-half-pint/p/20128938001_EA?source=nspt&search-bar=raspberries&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/raspberries-half-pint/p/20128938001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/fruits/berries-cherries/raspberries/p/715756100019"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/fruits/berries-cherries/raspberries/p/715756100019"
+        ]
+      }
+    },
+    {
+      "id": "6c015feb-3c32-44c0-92bf-f7945dbe379b",
+      "name": "Tortillas - Flour",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/original-tortillas/p/20182857_EA?source=nspt&search-bar=Tortillas+Large&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/original-tortillas/p/20182857_EA?source=nspt"
+        ],
+        "metro": [],
+        "superc": []
+      }
+    },
+    {
+      "id": "8337462a-2e83-40a0-8e4c-faf21cc0e48f",
+      "name": "Atlantic Salmon",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/atlantic-salmon-fillet/p/21634491_EA?source=nspt&search-bar=atlantic+slamon&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/fresh-atlantic-salmon-fillets-skin-on-packaged/p/20852143_KG?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fish-seafood/fresh-fish/salmon-trout-tuna/fresh-canadian-atlantic-salmon-fillet/p/230119"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fish-seafood/fresh-fish/salmon-trout-tuna/fresh-canadian-atlantic-salmon-fillet/p/230119"
+        ]
+      }
+    },
+    {
+      "id": "eb901341-84c3-4003-8cee-02982b782212",
+      "name": "Extra Firm Tofu",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/tofu-extra-firm/p/20570507_EA?source=nspt&search-bar=extra+firm+tofu&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/tofu-extra-firm/p/20570507_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegan-vegetarian/tofu-tempeh/extra-firm-tofu/p/057864000080"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegan-vegetarian/tofu-tempeh/extra-firm-tofu/p/057864000080"
+        ]
+      }
+    },
+    {
+      "id": "213560cf-39d0-41a4-a82d-28c4d288e5c6",
+      "name": "Red Onion",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/red-onion/p/20134101001_KG?source=nspt&search-bar=red+onion&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/red-onion/p/20134101001_KG?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/onions-leeks/red-onion/p/4082"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/onions-leeks/red-onion/p/4082"
+        ]
+      }
+    },
+    {
+      "id": "9c67d06c-3c86-442c-bba8-9bf351cc5b4c",
+      "name": "Limes",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/limes/p/20040489001_EA?source=nspt&search-bar=limes&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/limes/p/20040489001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/fruits/citrus-fruits/lime/p/4048"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/fruits/citrus-fruits/lime/p/4048"
+        ]
+      }
+    },
+    {
+      "id": "ae21b0cf-acbc-4e25-a93d-3c6b4e0cfb80",
+      "name": "English Cucumber",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/english-cucumber/p/20070132001_EA?source=nspt&search-bar=English+Cucumber&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/english-cucumber/p/20070132001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/tomatoes-cucumber/english-cucumber/p/4593"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/tomatoes-cucumber/english-cucumber/p/4593"
+        ]
+      }
+    },
+    {
+      "id": "6d591c8b-adb4-4572-a172-073824d313b7",
+      "name": "Cremini Mushrooms",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/whole-cremini-mushrooms/p/20775805_EA?source=nspt&search-bar=Cremini+Mushrooms&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/organics-whole-cremini-mushrooms/p/21021565_EA?source=nspt"
+        ],
+        "metro": [],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/mushrooms/cremini-mushrooms/p/033383450469"
+        ]
+      }
+    },
+    {
+      "id": "f7f56d3e-ba99-4532-b66c-807d101efa7f",
+      "name": "Quaker Oatmeal - Peach",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/peaches-cream-flavour-instant-oatmeal/p/21190266_EA?source=nspt&search-bar=quaker+oatmeal+peach&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/peaches-cream-flavour-instant-oatmeal/p/21190266_EA?source=nspt&search-bar=Peaches+%26+Cream+Flavour+Instant+Oatmeal&storeId=7288&cartId=1cb25200-023e-4453-9e4a-9b96dc82ccb6"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/cereals-spreads-syrups/oatmeal-hot-cereals/peaches-and-cream-flavoured-instant-oatmeal/p/055577113042"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/cereals-spreads-syrups/oatmeal-hot-cereals/peaches-and-cream-flavoured-instant-oatmeal/p/055577113042"
+        ]
+      }
+    },
+    {
+      "id": "ef3122dd-53e8-4e14-9f67-320684553f70",
+      "name": "Quaker Oatmeal - Raisin & Spice High Fiber",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/high-fibre-raisins-spice-instant-oatmeal/p/21550142_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/high-fibre-raisins-spice-instant-oatmeal/p/21550142_EA?source=nspt&search-bar=High+Fibre+Raisins+%26+Spice+Instant+Oatmeal&storeId=7288&cartId=1cb25200-023e-4453-9e4a-9b96dc82ccb6"
+        ],
+        "metro": [],
+        "superc": []
+      }
+    },
+    {
+      "id": "68fddf6e-c936-40ea-8584-0235eac4d56d",
+      "name": "Eggs",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/large-size-eggs-12-pack/p/20812144001_EA?source=nspt&search-bar=eggs&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/large-size-eggs-12-pack/p/20812144001_EA?source=nspt&search-bar=Eggs&storeId=7288&cartId=1cb25200-023e-4453-9e4a-9b96dc82ccb6&productBrand=N&page=1"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/milk-cream-butter/cream-creamers/large-eggs/p/059749896054"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/packaged-cheese/cottage-cheese-ricotta/large-eggs/p/059749896054"
+        ]
+      }
+    },
+    {
+      "id": "552bf477-8d63-4a39-b09f-1962170413a7",
+      "name": "Broccoli",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/broccoli-crown/p/21121560001_EA?source=nspt",
+          "https://www.maxi.ca/en/broccoli/p/20145621001_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/broccoli/p/20145621001_EA?source=nspt",
+          "https://www.provigo.ca/en/broccoli-crown/p/21121560001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/broccoli-cauliflower-cabbage/wrapped-broccoli-crown/p/796631161271",
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/broccoli-cauliflower-cabbage/local-broccoli/p/4060"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/broccoli-cauliflower-cabbage/broccoli/p/4060",
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/broccoli-cauliflower-cabbage/wrapped-broccoli-crown/p/796631161271"
+        ]
+      }
+    },
+    {
+      "id": "a26ea8c8-ce49-4994-b1b1-a07e0c22c4e4",
+      "name": "Ritz Crackers",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/ritz-original-crackers-rich-and-buttery-tasting-fl/p/21547034_EA?source=nspt&search-bar=ritz&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/ritz-original-crackers-rich-and-buttery-tasting-fl/p/21547034_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/snacks/salty-snacks/crackers/original-flavour-crackers/p/066721028419"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/snacks/salty-snacks/crackers/original-flavour-crackers/p/066721028419"
+        ]
+      }
+    },
+    {
+      "id": "874795bd-1820-471f-ad38-1d0d4bd91602",
+      "name": "Fresh Jalapeno",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/jalapeno-peppers/p/20088387001_KG?source=nspt&search-bar=jalapeno&storeId=8632&cartId=58b65fee-8c45-4128-b102-2a008b1de200"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/jalapeno-peppers/p/20088387001_KG?source=nspt&search-bar=Jalapeno+Peppers&storeId=7288&cartId=728f14fd-4ee0-4967-bb60-873da85f6922"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/jalapeno-pepper/p/4693"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/peppers-zucchini-eggplant/jalapeno-pepper/p/4693"
+        ]
+      }
+    },
+    {
+      "id": "609df24d-5a97-4caf-8f90-d012c4dcd57d",
+      "name": "Potatoes",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/russet-potatoes-10-lb-bag/p/20601020001_EA?source=nspt",
+          "https://www.maxi.ca/en/yellow-potato-10-lb-bag/p/20601017001_EA?source=nspt",
+          "https://www.maxi.ca/en/red-potatoes-10-lb-bag/p/20601013001_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/russet-potatoes-10-lb-bag/p/20601020001_EA?source=nspt",
+          "https://www.provigo.ca/en/yellow-potato-10-lb-bag/p/20601017001_EA?source=nspt",
+          "https://www.provigo.ca/en/red-potatoes-10-lb-bag/p/20601013001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/yellow-flesh-potatoes/p/059749868303",
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/washed-russet-potatoes/p/059749818445"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/potatoes/p/775011472107",
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/washed-russet-potatoes/p/059749818445",
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/yellow-flesh-potatoes/p/059749868303",
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/potatoes-carrots-celery/washed-red-potatoes/p/059749818681"
+        ]
+      }
+    },
+    {
+      "id": "b220bc3a-634f-4091-9ba1-722e132af49a",
+      "name": "Butter - Unsalted",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/unsalted-butter/p/20296112005_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/unsalted-butter/p/20296112005_EA?source=nspt"
+        ],
+        "metro": [],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/unsalted-butter/p/066096123450"
+        ]
+      }
+    },
+    {
+      "id": "7e3e3a15-3f75-416c-b221-599b0803bdbf",
+      "name": "Butter - Semisalt",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/semi-salted-butter/p/20296112003_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/semi-salted-butter/p/20296112003_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/milk-cream-butter/butter-margarine/semi-salted-butter/p/066096123320"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/semi-salted-butter/p/066096123320"
+        ]
+      }
+    },
+    {
+      "id": "8757a5f5-6ba6-4429-a6ec-bcfa3d97cb5a",
+      "name": "Ice Cream",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/super-premium-plus-ice-cream-salty-caramel-crunch/p/21511147_EA?source=nspt",
+          "https://www.maxi.ca/en/ice-cream-with-fairtrade-ingredients-half-baked-no/p/21428403_EA?source=nspt",
+          "https://www.maxi.ca/en/salted-caramel-super-premium-ice-cream/p/20604543003_EA?source=nspt",
+          "https://www.maxi.ca/en/vanilla-bean-ice-cream/p/21513578_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/ice-cream-with-fairtrade-ingredients-half-baked-no/p/21428403_EA?source=nspt",
+          "https://www.provigo.ca/en/super-premium-plus-ice-cream-salty-caramel-crunch/p/21511147_EA?source=nspt",
+          "https://www.provigo.ca/en/chocolate-hazelnut-ice-cream/p/21513268_EA?source=nspt",
+          "https://www.provigo.ca/en/super-premium-peanut-butter-chocolate-ice-cream/p/21648724_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/frozen/ice-cream-treats/ice-cream/chocolate-ice-cream/p/055000208444",
+          "https://www.metro.ca/en/online-grocery/aisles/frozen/ice-cream-treats/ice-cream/chocolate-ice-cream/p/055000205542",
+          "https://www.metro.ca/en/online-grocery/aisles/frozen/ice-cream-treats/ice-cream/chocolate-sandwich-cookie-ice-cream/p/058779143787"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/frozen/ice-cream-treats/ice-cream/vanilla-ice-cream/p/055000205528"
+        ]
+      }
+    },
+    {
+      "id": "d17365ff-5adf-4e24-93a5-7b321b530cef",
+      "name": "Saputo Mozzarella",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20759241002_EA?source=nspt",
+          "https://www.maxi.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20107017001_EA?source=nspt",
+          "https://www.maxi.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20770964_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20759241002_EA?source=nspt",
+          "https://www.provigo.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20107017001_EA?source=nspt",
+          "https://www.provigo.ca/en/mozzarellissima-pizza-mozzarella-cheese/p/20770964_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/packaged-cheese/cheese-blocks/pizza-mozzarella-cheese/p/063549331790",
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/packaged-cheese/cheese-blocks/pizza-mozzarella-cheese/p/063549993790"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/packaged-cheese/cheese-blocks/pizza-mozzarella-cheese/p/063549331790"
+        ]
+      }
+    },
+    {
+      "id": "6c18f2fc-8549-4962-b06a-819922a7012a",
+      "name": "Low Sodium Soy Sauce",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/soy-sauce-all-purpose-seasoning-less-sodium/p/21456720_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/soy-sauce-all-purpose-seasoning-less-sodium/p/21456720_EA?source=nspt",
+          "https://www.provigo.ca/en/less-sodium-soy-sauce/p/20015907_EA?source=nspt"
+        ],
+        "metro": [],
+        "superc": []
+      }
+    },
+    {
+      "id": "8923f5fc-dba1-42d0-b6a0-556a3ec3a35b",
+      "name": "Dried Pasta",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/linguine/p/20798578_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/spaghetti/p/20798589_EA?source=nspt&search-bar=primo+linguine&storeId=8684&cartId=19dac731-0d96-414b-ba40-885a5076ec87&productBrand=PRMO&page=1"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/pasta-rice-beans/pasta/linguine-pasta/p/055900001084"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/pasta-rice-beans/pasta/linguine-pasta/p/055900001084"
+        ]
+      }
+    },
+    {
+      "id": "78dad193-089f-4a0c-b750-05cbd08c5ea7",
+      "name": "Whole Chicken",
+      "urls": {
+        "maxi": [],
+        "provigo": [
+          "https://www.provigo.ca/en/whole-chicken-2-pack/p/21399561_KG"
+        ],
+        "metro": [],
+        "superc": []
+      }
+    },
+    {
+      "id": "7163449e-8312-4933-ace5-300e983588f9",
+      "name": "Dark Brown Sugar",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/natural-dark-brown-sugar/p/20169394_EA?source=nspt&search-bar=brown+sugar&storeId=7234&cartId=d876d33d-0606-48f6-af8d-07b600e41e02"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/natural-dark-brown-sugar/p/20169394_EA?source=nspt&search-bar=brown+sugar&storeId=8978&cartId=19dac731-0d96-414b-ba40-885a5076ec87"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/baking-ingredients/sugar-sweeteners/dark-brown-sugar/p/062847610699"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/baking-ingredients/sugar-sweeteners/dark-brown-sugar/p/062847610699"
+        ]
+      }
+    },
+    {
+      "id": "ffd9100f-dfb9-4996-89d1-cc7d50fe1cb0",
+      "name": "Flour - All Purpose",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/original-all-purpose-flour/p/20134743_EA?source=nspt",
+          "https://www.maxi.ca/en/all-purpose-flour-club-pack/p/20251651_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/original-all-purpose-flour/p/20134743_EA?source=nspt",
+          "https://www.provigo.ca/en/all-purpose-flour-club-pack/p/20251651_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/baking-ingredients/flour-baking-essentials/all-purpose-flour/p/059000016528",
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/baking-ingredients/flour-baking-essentials/all-purpose-white-flour/p/051500410400"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/baking-ingredients/flour-baking-essentials/all-purpose-flour/p/059000016528",
+          "https://www.superc.ca/en/aisles/pantry/baking-ingredients/flour-baking-essentials/all-purpose-white-flour/p/051500410400"
+        ]
+      }
+    },
+    {
+      "id": "6857b43f-afdc-42e2-9c2d-7802aee63109",
+      "name": "Chocolate - Baking",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/100-pure-semi-sweet-chocolate-baking-bar/p/20316019001_EA?source=nspt&search-bar=Semi-Sweet+Baking+Chocolate&storeId=7234&cartId=d876d33d-0606-48f6-af8d-07b600e41e02"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/100-pure-semi-sweet-chocolate-baking-bar/p/20316019001_EA?source=nspt&search-bar=Semi+Sweet+Baking+Chocolate&storeId=8684&cartId=19dac731-0d96-414b-ba40-885a5076ec87"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/baking-ingredients/chocolate-cocoa/semi-sweet-baking-chocolate-squares/p/066188008009"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/baking-ingredients/chocolate-cocoa/semi-sweet-baking-chocolate-squares/p/066188008009"
+        ]
+      }
+    },
+    {
+      "id": "f5277cf0-e0b0-4ec4-9f29-706f6c038426",
+      "name": "Nutella",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/hazelnut-spread-with-cocoa/p/21285418_EA?source=nspt",
+          "https://www.maxi.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20436105_EA?source=nspt",
+          "https://www.maxi.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20435988_EA?source=nspt",
+          "https://www.maxi.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20889082_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/hazelnut-spread-with-cocoa/p/21285418_EA?source=nspt",
+          "https://www.provigo.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20435988_EA?source=nspt",
+          "https://www.provigo.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20436105_EA?source=nspt",
+          "https://www.provigo.ca/en/hazelnut-spread-with-cocoa-for-breakfast/p/20889082_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/062020000842",
+          "https://www.metro.ca/en/online-grocery/aisles/value-pack/non-perishable/breakfast-snacks/hazelnut-spread-with-cocoa/p/062020003843",
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/062020000743",
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/068100902792",
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/068100902785"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/068100902792",
+          "https://www.superc.ca/en/aisles/value-pack/fresh-market/hazelnut-spread-with-cocoa/p/062020003843",
+          "https://www.superc.ca/en/aisles/pantry/cereals-spreads-syrups/chocolate-sweet-spreads/hazelnut-spread-with-cocoa/p/062020000743"
+        ]
+      }
+    },
+    {
+      "id": "f348523a-7d0a-4e83-9510-015dac54b44b",
+      "name": "Cream Cheese",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/whipped-original-cream-cheese-product/p/20866816002_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/original-cream-cheese-product/p/20866924010_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/packaged-cheese/cream-cheese-spreads/original-whipped-cream-cheese/p/068100896510"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/packaged-cheese/cream-cheese-spreads/original-whipped-cream-cheese/p/068100896510"
+        ]
+      }
+    },
+    {
+      "id": "ce24ea57-76eb-40d1-9bdd-75d52dec21f5",
+      "name": "Orange Juice",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/orange-pure-breakfast-juice/p/20336722005_EA"
+        ],
+        "provigo": [],
+        "metro": [],
+        "superc": []
+      }
+    },
+    {
+      "id": "c5bf4c73-6eb2-4526-a007-b36a724d8980",
+      "name": "Mayonnaise",
+      "urls": {
+        "maxi": [],
+        "provigo": [
+          "https://www.provigo.ca/en/mayonnaise-type-dressing-light-1-2-fat/p/20627339001_EA?source=nspt&search-bar=Mayonnaise+Type+Dressing+Light+1+2+Fat&storeId=8684&cartId=19dac731-0d96-414b-ba40-885a5076ec87"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/condiments-toppings/mayonnaise-sandwich-spreads/reduced-fat-light-mayonnaise-type-dressing-with-olive-oil/p/068400158066"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/condiments-toppings/mayonnaise-sandwich-spreads/reduced-fat-light-mayonnaise-type-dressing-with-olive-oil/p/068400158066"
+        ]
+      }
+    },
+    {
+      "id": "2f8e62e4-40be-4ae9-b1d0-c95783b628e4",
+      "name": "Dijon Mustard",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/dijon-originale-mustard/p/20032602001_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/dijon-originale-mustard/p/20032602001_EA?source=nspt",
+          "https://www.provigo.ca/en/dijon-originale-mustard/p/20304823001_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/condiments-toppings/ketchup-mustard/dijon-mustard/p/043646201295",
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/condiments-toppings/ketchup-mustard/dijon-mustard/p/043646201288"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/condiments-toppings/ketchup-mustard/dijon-mustard/p/043646201295"
+        ]
+      }
+    },
+    {
+      "id": "beb3e85c-ff35-4550-8941-f65a7a9aab78",
+      "name": "Romaine Lettuce",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/romaine-lettuce/p/20065036001_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/romaine-lettuce/p/20065036001_EA?source=nspt&search-bar=Romaine+Lettuce&storeId=8684&cartId=19dac731-0d96-414b-ba40-885a5076ec87"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/fruits-vegetables/vegetables/lettuce-leafy-vegetables/romaine-lettuce/p/4640"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/fruits-vegetables/vegetables/lettuce-leafy-vegetables/romaine-lettuce/p/4640"
+        ]
+      }
+    },
+    {
+      "id": "10ddb68c-0d5a-424a-b0ea-0a29563f72bc",
+      "name": "Sesame Oil",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/pure-sesame-oil/p/20187332_EA?source=nspt",
+          "https://www.maxi.ca/en/pure-sesame-oil/p/20287680_EA?source=nspt",
+          "https://www.maxi.ca/en/pure-sesame-oil/p/20990809_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/pure-sesame-oil/p/20187332_EA?source=nspt",
+          "https://www.provigo.ca/en/pure-sesame-oil/p/20287680_EA?source=nspt",
+          "https://www.provigo.ca/en/pure-sesame-oil/p/20112073_EA?source=nspt",
+          "https://www.provigo.ca/en/pure-sesame-oil/p/20165080_EA?source=nspt",
+          "https://www.provigo.ca/en/pure-sesame-oil/p/20990809_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/oils-vinegars/nut-seed-oil/sesame-oil/p/059749961677",
+          "https://www.metro.ca/en/online-grocery/aisles/organic-groceries/pantry/organic-oil-vinegar-dressing/toasted-sesame-seed-oil/p/059749979382"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/oils-vinegars/nut-seed-oil/sesame-oil/p/059749961677",
+          "https://www.superc.ca/en/aisles/world-cuisine/other-international-products/sesame-oil/p/672774000090"
+        ]
+      }
+    },
+    {
+      "id": "5da50645-ad5d-48d1-b768-50bfa6b6269f",
+      "name": "Whole Wheat Pasta",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/whole-grains-spaghetti-pasta/p/20312623001_EA?source=nspt&search-bar=Whole+Wheat+Pasta&storeId=8797&cartId=d7961423-c196-4b43-a9b2-9df8631c5a16"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/whole-grains-spaghetti-pasta/p/20312623001_EA?source=nspt&search-bar=Whole+Wheat+Pasta&storeId=8684&cartId=19dac731-0d96-414b-ba40-885a5076ec87"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/pantry/pasta-rice-beans/pasta/whole-wheat-spaghetti-pasta/p/064200115926"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/pantry/pasta-rice-beans/pasta/whole-wheat-spaghetti-pasta/p/064200115926"
+        ]
+      }
+    },
+    {
+      "id": "3ffed5bd-da75-43b7-b40a-f5032f4c6790",
+      "name": "Cheese - Quesadillas",
+      "urls": {
+        "maxi": [
+          "https://www.maxi.ca/en/gouda-cheese/p/21289708_EA?source=nspt"
+        ],
+        "provigo": [
+          "https://www.provigo.ca/en/monterey-jack-cheese-with-jalape-o/p/21289763_EA?source=nspt"
+        ],
+        "metro": [
+          "https://www.metro.ca/en/online-grocery/aisles/dairy-eggs/packaged-cheese/cheese-blocks/monterey-jack-cheese/p/059749961974"
+        ],
+        "superc": [
+          "https://www.superc.ca/en/aisles/dairy-eggs/packaged-cheese/cheese-blocks/monterey-jack-cheese/p/059749961974"
+        ]
+      }
+    }
+  ]
+}

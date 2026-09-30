@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grocery Price Comparator 🛒</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f4f0; color: #222; min-height: 100vh;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+      color: #fff; padding: 18px 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    header .icon { font-size: 1.9rem; }
+    header h1 { font-size: 1.35rem; font-weight: 700; }
+    header p  { font-size: 0.8rem; opacity: 0.72; margin-top: 2px; }
+    .pw-pill {
+      margin-left: auto; font-size: 0.71rem; font-weight: 600;
+      padding: 4px 11px; border-radius: 20px; white-space: nowrap;
+    }
+    .pw-ok  { background: rgba(100,255,150,.22); color: #b7ffcb; }
+    .pw-bad { background: rgba(255,120,80,.22);  color: #ffd0c0; cursor: help; }
+    .warmup-pill {
+      font-size: 0.71rem; font-weight: 600; padding: 4px 11px;
+      border-radius: 20px; white-space: nowrap; cursor: default;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .warmup-running { background: rgba(255,210,80,.22); color: #ffe082; }
+    .warmup-ready   { background: rgba(100,255,150,.22); color: #b7ffcb; }
+    .warmup-warn    { background: rgba(255,120,80,.22);  color: #ffd0c0; }
+    .warmup-spin {
+      width: 9px; height: 9px; border-radius: 50%;
+      border: 2px solid currentColor; border-top-color: transparent;
+      animation: spin .7s linear infinite; display: inline-block;
+    }
+
+    /* ── Store bar ───────────────────────────────────────────── */
+    .store-bar {
+      background: #1b4332; padding: 7px 28px 11px;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .spill {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: .05em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 20px; color: #fff;
+    }
+    .sp-maxi    { background: #1565c0; }
+    .sp-provigo { background: #521043; }
+    .sp-metro   { background: #bf360c; }
+    .sp-superc  { background: #f57f17; }
+
+    /* ── Layout ──────────────────────────────────────────────── */
+    main { max-width: 1060px; margin: 0 auto; padding: 22px 14px 60px; }
+
+    /* ── Card ────────────────────────────────────────────────── */
+    .card {
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      margin-bottom: 18px; box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    .card-title {
+      font-size: 0.95rem; font-weight: 600; color: #1b4332;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+    }
+
+    /* ── Forms ───────────────────────────────────────────────── */
+    label { display: block; font-size: 0.8rem; font-weight: 500; color: #555; margin-bottom: 5px; }
+    textarea {
+      width: 100%; padding: 9px 12px;
+      border: 1.5px solid #d9e6db; border-radius: 9px;
+      font-size: 0.93rem; font-family: inherit; color: #222; background: #f8fdf8;
+      transition: border-color .16s, box-shadow .16s;
+      min-height: 160px; resize: vertical; line-height: 1.75;
+    }
+    textarea:focus {
+      outline: none; border-color: #2d6a4f;
+      background: #fff; box-shadow: 0 0 0 3px rgba(45,106,79,.12);
+    }
+    input[type="text"], input[type="url"] {
+      padding: 7px 10px; border: 1.5px solid #d9e6db; border-radius: 7px;
+      font-size: 0.88rem; font-family: inherit; color: #222; background: #f8fdf8;
+      transition: border-color .16s;
+    }
+    input[type="text"]:focus, input[type="url"]:focus {
+      outline: none; border-color: #2d6a4f; background: #fff;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────── */
+    .btn {
+      padding: 10px 22px; border: none; border-radius: 9px;
+      font-size: 0.92rem; font-weight: 600; cursor: pointer;
+      transition: background .15s, transform .1s; white-space: nowrap;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-green { background: #2d6a4f; color: #fff; }
+    .btn-green:hover { background: #1b4332; }
+    .btn-green:disabled { background: #8db89d; cursor: not-allowed; transform: none; }
+    .btn-csv { background: #1565c0; color: #fff; font-size: 0.8rem; padding: 7px 14px; }
+    .btn-csv:hover { background: #0d47a1; }
+    .btn-csv:disabled { background: #90a4ae; cursor: not-allowed; }
+    .btn-sm {
+      padding: 4px 10px; font-size: 0.76rem; font-weight: 600;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background .13s;
+    }
+    .btn-ghost {
+      background: transparent; color: #2d6a4f;
+      border: 1.5px solid #c8e6c9; border-radius: 7px;
+      padding: 5px 12px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    }
+    .btn-ghost:hover { background: #f0fbf3; }
+    .btn-danger { background: #ffebee; color: #c62828; }
+    .btn-danger:hover { background: #ffcdd2; }
+    .btn-add { background: #e8f5e9; color: #2d6a4f; }
+    .btn-add:hover { background: #c8e6c9; }
+    .btn-retry {
+      margin-top: 5px; padding: 2px 8px; font-size: 0.7rem; font-weight: 600;
+      border: 1px solid #b0bec5; border-radius: 5px; background: #f5f5f5;
+      color: #555; cursor: pointer; display: inline-block;
+    }
+    .btn-retry:hover { background: #e0e0e0; color: #222; }
+
+    /* ── Tabs ────────────────────────────────────────────────── */
+    .tabs { display: flex; border-radius: 9px; overflow: hidden;
+            border: 1.5px solid #d1ead9; margin-bottom: 14px; }
+    .tab-btn { flex: 1; padding: 9px; border: none; background: #fff;
+               font-size: 0.87rem; font-weight: 500; color: #888;
+               cursor: pointer; transition: background .14s; }
+    .tab-btn.active { background: #2d6a4f; color: #fff; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* ── Upload ──────────────────────────────────────────────── */
+    .upload-zone {
+      position: relative; border: 2px dashed #b7d9c0; border-radius: 10px;
+      padding: 28px 18px; text-align: center; cursor: pointer;
+      transition: border-color .16s, background .16s;
+    }
+    .upload-zone:hover { border-color: #2d6a4f; background: #f0fbf3; }
+    .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-zone .uico { font-size: 1.7rem; margin-bottom: 7px; }
+    .upload-zone p { font-size: 0.85rem; color: #666; }
+    .upload-zone strong { color: #2d6a4f; }
+    .upreview {
+      margin-top: 10px; background: #f5fcf7;
+      border: 1px solid #d1ead9; border-radius: 8px; padding: 10px 13px; font-size: 0.8rem;
+    }
+    .upreview .fname { font-weight: 600; color: #1b4332; }
+    .upreview .ulist { margin-top: 5px; max-height: 90px; overflow-y: auto; color: #555; line-height: 1.8; }
+    .hint { font-size: 0.77rem; color: #aaa; margin-top: 7px; }
+
+    /* ── CTA ─────────────────────────────────────────────────── */
+    .cta { text-align: center; margin: 4px 0 24px; display: flex; gap: 10px; justify-content: center; }
+    .cta .btn { padding: 13px 40px; font-size: 1.02rem; border-radius: 12px;
+                box-shadow: 0 4px 14px rgba(45,106,79,.22); }
+
+    /* ══════════════════════════════════════════════════════════
+       CATALOG UI
+    ══════════════════════════════════════════════════════════ */
+    .catalog-toolbar {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .catalog-toolbar input[type="text"] { flex: 1; min-width: 180px; }
+
+    .catalog-empty {
+      text-align: center; padding: 28px 0; color: #aaa; font-size: 0.9rem;
+    }
+
+    /* Item row */
+    .cat-item {
+      border: 1.5px solid #e8f5e9; border-radius: 10px;
+      margin-bottom: 8px; overflow: hidden;
+      transition: border-color .15s;
+    }
+    .cat-item.expanded { border-color: #2d6a4f; }
+
+    .cat-item-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; cursor: pointer;
+      background: #f9fdf9;
+      user-select: none;
+    }
+    .cat-item-header:hover { background: #f0fbf3; }
+    .cat-item.expanded .cat-item-header { background: #e8f5e9; }
+
+    .cat-check { width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; accent-color: #2d6a4f; }
+    .cat-name { font-weight: 600; font-size: 0.92rem; flex: 1; }
+    .cat-store-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+    .cat-badge {
+      font-size: 0.63rem; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+      color: #fff; opacity: 0.5;
+    }
+    .cat-badge.has-url { opacity: 1; }
+    .cat-arrow { font-size: 0.7rem; color: #999; transition: transform .2s; flex-shrink: 0; }
+    .cat-item.expanded .cat-arrow { transform: rotate(180deg); }
+    .cat-del { background: none; border: none; cursor: pointer; font-size: 1rem;
+               color: #ccc; padding: 2px 4px; }
+    .cat-del:hover { color: #c62828; }
+    .cat-rename-btn { background: none; border: none; cursor: pointer; font-size: 0.85rem;
+                      padding: 2px 4px; opacity: 0.35; transition: opacity .15s; }
+    .cat-item-header:hover .cat-rename-btn { opacity: 1; }
+
+    /* Expanded body */
+    .cat-item-body { display: none; padding: 14px 16px; border-top: 1px solid #e8f5e9; }
+    .cat-item.expanded .cat-item-body { display: block; }
+
+    .cat-store-section { margin-bottom: 14px; }
+    .cat-store-label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; margin-bottom: 7px; color: #555;
+    }
+    .cat-url-list { display: flex; flex-direction: column; gap: 5px; margin-bottom: 7px; }
+    .cat-url-row {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cat-url-row a {
+      font-size: 0.78rem; color: #1565c0; flex: 1;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      max-width: 340px;
+    }
+    .cat-add-url {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .cat-add-url input { flex: 1; font-size: 0.82rem; }
+
+    /* ══════════════════════════════════════════════════════════
+       PROGRESS UI
+    ══════════════════════════════════════════════════════════ */
+    #progress-section { display: none; margin-bottom: 18px; }
+
+    .progress-card {
+      background: #fff; border-radius: 14px; padding: 20px 26px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    .prog-label {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .prog-label .prog-text { font-size: 0.88rem; font-weight: 600; color: #1b4332; }
+    .prog-label .prog-frac { font-size: 0.78rem; color: #999; }
+
+    .prog-bar-track {
+      height: 8px; background: #e8f5e9; border-radius: 99px; overflow: hidden;
+    }
+    .prog-bar-fill {
+      height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788);
+      border-radius: 99px; transition: width 0.4s ease; width: 0%;
+    }
+    .current-item {
+      margin-top: 16px; padding: 12px 14px;
+      background: #f5fcf7; border: 1px solid #d1ead9; border-radius: 10px;
+    }
+    .curr-name { font-size: 0.85rem; font-weight: 600; color: #1b4332; margin-bottom: 10px; }
+    .store-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .store-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 4px 11px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      transition: background .25s, color .25s;
+    }
+    .chip-wait     { background: #f0f0f0; color: #bbb; }
+    .chip-searching { background: #e8f5e9; color: #2d6a4f; animation: pulse 1.2s ease-in-out infinite; }
+    .chip-done     { background: #2d6a4f; color: #fff; }
+    .chip-err      { background: #ffebee; color: #c62828; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .chip-searching .chip-dot {
+      background: transparent; border: 2px solid #2d6a4f; border-top-color: transparent;
+      animation: spin .7s linear infinite; width: 8px; height: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Results ─────────────────────────────────────────────── */
+    #results-section { display: none; }
+    .res-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
+    }
+    .res-count { background: #d8f3dc; color: #1b4332; font-size: 0.74rem;
+                 font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead th {
+      background: #f5fcf7; padding: 10px 13px; text-align: left;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: #666; border-bottom: 2px solid #d1ead9;
+      position: sticky; top: 0; z-index: 1;
+    }
+    tbody td { padding: 12px 13px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: #f8fef9; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .row-new { animation: fadeIn 0.3s ease forwards; }
+    .row-pending td { opacity: 0.35; }
+    .skel {
+      display: inline-block; height: 14px; border-radius: 6px;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+      background-size: 200% 100%; animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    .item-name { font-weight: 600; display: block; }
+    .weight-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      background: #fff8e1; color: #bf360c; padding: 1px 6px;
+      border-radius: 5px; margin-top: 3px;
+    }
+
+    .pcell { display: flex; flex-direction: column; gap: 2px; }
+    .p-main { font-size: 1rem; font-weight: 700; color: #333; }
+    .p-unit { font-size: 0.7rem; color: #999; margin-top: 1px; }
+    .p-name {
+      font-size: 0.71rem; color: #777; max-width: 165px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .p-link { color: inherit; text-decoration: none; }
+    .p-link:hover .p-main { text-decoration: underline; }
+    .best .p-main { color: #1b4332 !important; }
+    .best-badge {
+      display: inline-block; background: #d8f3dc; color: #1b4332;
+      font-size: 0.64rem; font-weight: 700; padding: 1px 7px;
+      border-radius: 6px; margin-top: 3px;
+    }
+    .per-unit-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      background: #e8f4ec; color: #2d6a4f; padding: 1px 6px;
+      border-radius: 5px; margin-top: 2px;
+    }
+    .na  { color: #ccc; font-style: italic; font-size: 0.82rem; }
+    .err { color: #b71c1c; font-size: 0.7rem; line-height: 1.45; max-width: 160px; }
+
+    .banner {
+      padding: 10px 14px; border-radius: 9px;
+      font-size: 0.82rem; margin-bottom: 12px; line-height: 1.5;
+    }
+    .banner-info    { background: #e3f2fd; color: #0d47a1; }
+    .banner-warning { background: #fff8e1; color: #bf360c; }
+
+    /* ── Shopping list ───────────────────────────────────── */
+    #shopping-section { display: none; margin-top: 4px; }
+    .shopping-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      margin-top: 4px;
+    }
+    @media (max-width: 820px) {
+      .shopping-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .shopping-grid { grid-template-columns: 1fr; }
+    }
+    .shop-col {
+      border: 1.5px solid #e0e0e0; border-radius: 10px; overflow: hidden;
+    }
+    .shop-col-header {
+      padding: 8px 12px; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: #fff; display: flex; align-items: center; justify-content: space-between;
+    }
+    .shop-col-header .item-count {
+      font-size: 0.65rem; opacity: 0.8; font-weight: 500;
+    }
+    .shop-col-maxi    .shop-col-header { background: #1565c0; }
+    .shop-col-provigo .shop-col-header { background: #521043; }
+    .shop-col-metro   .shop-col-header { background: #bf360c; }
+    .shop-col-superc  .shop-col-header { background: #f57f17; }
+    .shop-item-list { padding: 8px 0; }
+    .shop-item {
+      padding: 8px 12px; border-bottom: 1px solid #f5f5f5;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .shop-item:last-child { border-bottom: none; }
+    .shop-item-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .shop-item-category { font-size: 0.72rem; color: #999; font-weight: 500; }
+    .shop-item-name {
+      font-size: 0.85rem; font-weight: 600; color: #222;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .shop-item-price { font-size: 0.82rem; color: #2d6a4f; font-weight: 700; }
+    .shop-empty {
+      padding: 18px 12px; text-align: center; color: #bbb;
+      font-size: 0.82rem; font-style: italic;
+    }
+    .btn-list {
+      background: #1b4332; color: #fff; font-size: 0.8rem; padding: 7px 14px;
+    }
+    .btn-list:hover { background: #0f2d20; }
+    .btn-email {
+      background: #1565c0; color: #fff; font-size: 0.8rem; padding: 7px 14px;
+    }
+    .btn-email:hover { background: #0d47a1; }
+    .btn-remove-item {
+      margin-left: 6px; background: none; border: none; cursor: pointer;
+      color: #ccc; font-size: 0.75rem; font-weight: 700; padding: 1px 4px;
+      border-radius: 4px; vertical-align: middle; line-height: 1;
+      transition: color .13s, background .13s;
+    }
+    .btn-remove-item:hover { color: #c62828; background: #ffebee; }
+    .btn-pin {
+      margin-top: 4px; background: none; border: 1px solid #d9e6db; cursor: pointer;
+      color: #666; font-size: 0.68rem; font-weight: 600; padding: 2px 7px;
+      border-radius: 12px; line-height: 1.3; align-self: flex-start;
+      transition: color .13s, background .13s, border-color .13s;
+    }
+    .btn-pin:hover { color: #1b4332; border-color: #2d6a4f; background: #f0fbf3; }
+    .btn-pin.is-pinned { color: #1b4332; border-color: #2d6a4f; background: #e6f4ea; }
+    @media print {
+      header, .store-bar, main > *:not(#shopping-section) { display: none !important; }
+      #shopping-section { display: block !important; }
+      .shopping-grid { grid-template-columns: repeat(4, 1fr); }
+      .shop-col { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 640px) {
+      thead th, tbody td { padding: 8px 8px; font-size: 0.8rem; }
+      .store-chips { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="icon">🛒</div>
+  <div>
+    <h1>Grocery Price Comparator</h1>
+    <p>Montreal · real-time prices from store websites</p>
+  </div>
+  {% if playwright_ok %}
+    <span class="pw-pill pw-ok">✓ Playwright ready</span>
+  {% else %}
+    <span class="pw-pill pw-bad"
+          title="Run: pip install playwright && playwright install chromium firefox">⚠ Playwright missing</span>
+  {% endif %}
+  <span class="warmup-pill warmup-running" id="warmup-pill" title="Click to refresh">
+    <span class="warmup-spin" id="warmup-spin"></span>
+    <span id="warmup-text">Warming up…</span>
+  </span>
+  <button id="metro-setup-btn" title="Select your Metro store so prices match your location"
+    style="margin-left:8px;padding:3px 10px;font-size:.75rem;background:#bf360c;color:#fff;border:none;border-radius:12px;cursor:pointer;opacity:.85">
+    🏪 Metro Store
+  </button>
+  <span id="metro-setup-status" style="margin-left:6px;font-size:.72rem;color:#aaa;display:none"></span>
+</header>
+
+<div class="store-bar">
+  <span class="spill sp-maxi">Maxi</span>
+  <span class="spill sp-provigo">Provigo</span>
+  <span class="spill sp-metro">Metro</span>
+  <span class="spill sp-superc">Super C</span>
+</div>
+
+<main>
+
+  {% if not playwright_ok %}
+  <div class="banner banner-warning">
+    ⚠️ <strong>Playwright is not installed.</strong>
+    Run: <code>pip install playwright &amp;&amp; playwright install chromium firefox</code> then restart.
+  </div>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════════════════
+       Input card
+  ══════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-title">📋 Your Grocery List</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('type')">✏️ Type items</button>
+      <button class="tab-btn"        onclick="switchTab('upload')">📄 Upload file</button>
+      <button class="tab-btn"        onclick="switchTab('catalog')">📌 My Items</button>
+    </div>
+
+    <!-- TYPE -->
+    <div class="tab-pane active" id="pane-type">
+      <label>One item per line — generic names work best</label>
+      <textarea id="grocery-text"
+                placeholder="milk&#10;bananas&#10;chicken breast&#10;eggs&#10;cheddar&#10;orange juice&#10;broccoli&#10;ground beef"></textarea>
+      <p class="hint">🌿 Produce &amp; meat are auto-detected — per-lb prices used for comparison.</p>
+    </div>
+
+    <!-- UPLOAD -->
+    <div class="tab-pane" id="pane-upload">
+      <div class="upload-zone" id="uzone">
+        <input type="file" id="file-in" accept=".txt,.csv" onchange="handleFile(event)" />
+        <div class="uico">📂</div>
+        <p><strong>Click or drag</strong> a .txt / .csv file</p>
+        <p style="margin-top:3px;">One grocery item per line</p>
+      </div>
+      <div class="upreview" id="upreview" style="display:none;">
+        <span class="fname" id="fname"></span>
+        <div class="ulist" id="ulist"></div>
+      </div>
+    </div>
+
+    <!-- CATALOG -->
+    <div class="tab-pane" id="pane-catalog">
+      <div class="catalog-toolbar">
+        <input type="text" id="new-item-name" placeholder="Item name (e.g. Bananas)" />
+        <button class="btn-ghost" onclick="addCatalogItem()">+ Add Item</button>
+        <span style="flex:1"></span>
+        <span id="cat-sel-count" style="font-size:0.78rem;color:#999;"></span>
+      </div>
+      <div id="catalog-list">
+        <div class="catalog-empty">Loading…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <button class="btn btn-green" id="btn-compare" onclick="startCompare()">🔍 Compare Prices</button>
+    <button class="btn btn-green" id="btn-compare-catalog" style="display:none" onclick="startCatalogCompare()">🔍 Compare Selected</button>
+    <button class="btn btn-green" id="btn-compare-all"     style="display:none" onclick="compareAll()">🔍 Compare All</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       LIVE PROGRESS
+  ══════════════════════════════════════════════════════ -->
+  <div id="progress-section">
+    <div class="progress-card">
+      <div class="prog-label">
+        <span class="prog-text" id="prog-text">Starting…</span>
+        <span class="prog-frac" id="prog-frac"></span>
+      </div>
+      <div class="prog-bar-track">
+        <div class="prog-bar-fill" id="prog-fill"></div>
+      </div>
+      <div class="current-item" id="current-item" style="display:none;">
+        <div class="curr-name" id="curr-name"></div>
+        <div class="store-chips" id="store-chips"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       RESULTS
+  ══════════════════════════════════════════════════════ -->
+  <div id="results-section">
+    <div class="card">
+      <div class="res-header">
+        <div class="card-title" style="margin-bottom:0;">
+          📊 Results
+          <span class="res-count" id="res-count">0 items</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="btn btn-list" id="btn-shoplist" onclick="generateShoppingList()"
+                  style="display:none;">🛍 Shopping List</button>
+          <button class="btn btn-csv" id="btn-csv" onclick="downloadCSV()" disabled>⬇ Download CSV</button>
+        </div>
+      </div>
+
+      <div class="banner banner-info" style="margin-bottom:14px;">
+        💡 Click any price to open the product page.
+        For produce 🌿, <strong>per-lb / per-kg prices</strong> are used for comparison.
+      </div>
+
+      <div class="table-wrap">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th><span class="spill sp-maxi"    style="font-size:.65rem;padding:2px 7px;">Maxi</span></th>
+              <th><span class="spill sp-provigo" style="font-size:.65rem;padding:2px 7px;">Provigo</span></th>
+              <th><span class="spill sp-metro"   style="font-size:.65rem;padding:2px 7px;">Metro</span></th>
+              <th><span class="spill sp-superc"  style="font-size:.65rem;padding:2px 7px;">Super C</span></th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SHOPPING LIST
+  ══════════════════════════════════════════════════════ -->
+  <div id="shopping-section">
+    <div class="card">
+      <div class="res-header" style="margin-bottom:14px;">
+        <div class="card-title" style="margin-bottom:0;">🛍 Shopping List</div>
+        <button class="btn btn-email" onclick="emailShoppingList()" style="font-size:0.78rem;padding:6px 13px;">
+          📧 Email
+        </button>
+        <button class="btn btn-list" onclick="window.print()" style="font-size:0.78rem;padding:6px 13px;">
+          🖨 Print
+        </button>
+      </div>
+      <p style="font-size:0.8rem;color:#888;margin-bottom:14px;">
+        Items assigned to the store with the lowest price. Ties go to both stores.
+      </p>
+      <div class="shopping-grid" id="shopping-grid"></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+/* ─────────────────────────────────────────────────────────
+   Constants
+───────────────────────────────────────────────────────── */
+const STORES      = ['maxi','provigo','metro','superc'];
+const STORE_LABEL = { maxi:'Maxi', provigo:'Provigo', metro:'Metro', superc:'Super C' };
+const STORE_CLS   = { maxi:'sp-maxi', provigo:'sp-provigo', metro:'sp-metro', superc:'sp-superc' };
+const STORE_COLOR = { maxi:'#1565c0', provigo:'#521043', metro:'#bf360c', superc:'#f57f17' };
+
+/* ─────────────────────────────────────────────────────────
+   State
+───────────────────────────────────────────────────────── */
+let uploadedItems = [];
+let allResults    = {};
+let totalItems    = 0;
+let doneItems     = 0;
+let catalogItems  = [];   // [{id, name, urls:{maxi:[],…}}]
+let lastStoreItems = {};  // populated by generateShoppingList, used by emailShoppingList
+let removedAssignments = new Set();  // "store||category" pairs the user manually removed from the shopping list
+let pinnedStores = {};  // itemName -> store: session-only override forcing an item to a chosen store
+
+/* ─────────────────────────────────────────────────────────
+   Tabs
+───────────────────────────────────────────────────────── */
+function switchTab(name) {
+  const names = ['type', 'upload', 'catalog'];
+  document.querySelectorAll('.tab-btn').forEach((b,i) =>
+    b.classList.toggle('active', name === names[i])
+  );
+  names.forEach(n => {
+    document.getElementById('pane-'+n).classList.toggle('active', n === name);
+  });
+
+  // Toggle CTA buttons
+  const isCtlg = name === 'catalog';
+  document.getElementById('btn-compare').style.display         = isCtlg ? 'none' : '';
+  document.getElementById('btn-compare-catalog').style.display = isCtlg ? '' : 'none';
+  document.getElementById('btn-compare-all').style.display     = isCtlg ? '' : 'none';
+
+  if (name === 'catalog') loadCatalog();
+}
+
+/* ─────────────────────────────────────────────────────────
+   File upload
+───────────────────────────────────────────────────────── */
+function handleFile(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    uploadedItems = ev.target.result.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    document.getElementById('fname').textContent = `${file.name} · ${uploadedItems.length} item(s)`;
+    document.getElementById('ulist').textContent = uploadedItems.map((x,i)=>`${i+1}. ${x}`).join('\n');
+    document.getElementById('upreview').style.display='block';
+  };
+  r.readAsText(file);
+}
+const uz = document.getElementById('uzone');
+uz.addEventListener('dragover', e=>{e.preventDefault();uz.style.borderColor='#2d6a4f';});
+uz.addEventListener('dragleave', ()=>uz.style.borderColor='');
+uz.addEventListener('drop', e=>{
+  e.preventDefault();uz.style.borderColor='';
+  if(e.dataTransfer.files.length){
+    document.getElementById('file-in').files=e.dataTransfer.files;
+    handleFile({target:document.getElementById('file-in')});
+  }
+});
+
+/* ─────────────────────────────────────────────────────────
+   Catalog — load & render
+───────────────────────────────────────────────────────── */
+async function loadCatalog() {
+  const res = await fetch('/api/catalog');
+  const data = await res.json();
+  catalogItems = data.items || [];
+  renderCatalog();
+}
+
+function renderCatalog() {
+  const el = document.getElementById('catalog-list');
+  if (!catalogItems.length) {
+    el.innerHTML = '<div class="catalog-empty">No items yet — add one above.</div>';
+    updateSelCount();
+    return;
+  }
+  // Preserve the current checkbox selection across the re-render so that
+  // adding/removing a catalog item doesn't wipe what the user had selected.
+  const checkedIds = new Set(
+    [...el.querySelectorAll('.cat-check:checked')].map(c => c.id.replace('chk-', ''))
+  );
+  const sorted = [...catalogItems].sort((a, b) => a.name.localeCompare(b.name));
+  el.innerHTML = sorted.map(item => renderCatalogItem(item)).join('');
+  checkedIds.forEach(id => {
+    const c = document.getElementById('chk-' + id);
+    if (c) c.checked = true;
+  });
+  updateSelCount();
+}
+
+function renderCatalogItem(item) {
+  const badges = STORES.map(b => {
+    const count = (item.urls[b] || []).length;
+    const hasUrl = count > 0;
+    return `<span class="cat-badge ${STORE_CLS[b]} ${hasUrl?'has-url':''}"
+                  style="background:${STORE_COLOR[b]}"
+                  title="${STORE_LABEL[b]}: ${count} URL${count!==1?'s':''}">${STORE_LABEL[b]}${hasUrl?' ×'+count:''}</span>`;
+  }).join('');
+
+  return `<div class="cat-item" id="catitem-${item.id}">
+    <div class="cat-item-header" onclick="toggleCatItem('${item.id}')">
+      <input type="checkbox" class="cat-check" id="chk-${item.id}"
+             onclick="event.stopPropagation(); updateSelCount()"
+             title="Select for comparison" />
+      <span class="cat-name" id="catname-${item.id}">${h(item.name)}</span>
+      <button class="cat-rename-btn" title="Rename"
+              onclick="event.stopPropagation(); startRename('${item.id}')">✏️</button>
+      <div class="cat-store-badges">${badges}</div>
+      <span class="cat-arrow">▼</span>
+      <button class="cat-del" title="Delete item"
+              onclick="event.stopPropagation(); deleteCatalogItem('${item.id}')">🗑</button>
+    </div>
+    <div class="cat-item-body" id="catbody-${item.id}">
+      ${STORES.map(b => renderStoreSection(item, b)).join('')}
+    </div>
+  </div>`;
+}
+
+function renderStoreSection(item, banner) {
+  const urls = item.urls[banner] || [];
+  const urlRows = urls.map((url, i) => `
+    <div class="cat-url-row" id="urlrow-${item.id}-${banner}-${i}">
+      <a href="${h(url)}" target="_blank" rel="noopener" title="${h(url)}">${h(url)}</a>
+      <button class="btn-sm btn-danger" onclick="removeUrl('${item.id}','${banner}',${i})">✕</button>
+    </div>`).join('');
+
+  return `<div class="cat-store-section">
+    <div class="cat-store-label">
+      <span class="spill ${STORE_CLS[banner]}" style="font-size:.6rem;padding:2px 7px;">${STORE_LABEL[banner]}</span>
+    </div>
+    <div class="cat-url-list" id="urls-${item.id}-${banner}">${urlRows}</div>
+    <div class="cat-add-url">
+      <input type="url" id="urlinput-${item.id}-${banner}"
+             placeholder="Paste product URL…"
+             onkeydown="if(event.key==='Enter') addUrl('${item.id}','${banner}')" />
+      <button class="btn-sm btn-add" onclick="addUrl('${item.id}','${banner}')">Add</button>
+    </div>
+  </div>`;
+}
+
+function toggleCatItem(id) {
+  const el = document.getElementById('catitem-' + id);
+  el.classList.toggle('expanded');
+}
+
+function updateSelCount() {
+  const checked = document.querySelectorAll('.cat-check:checked').length;
+  const total   = catalogItems.length;
+  document.getElementById('cat-sel-count').textContent =
+    total ? `${checked} of ${total} selected` : '';
+
+  // Enable/disable "Compare Selected" based on whether anything is checked
+  document.getElementById('btn-compare-catalog').disabled = checked === 0;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Catalog — CRUD
+───────────────────────────────────────────────────────── */
+function startRename(id) {
+  const span = document.getElementById('catname-' + id);
+  if (!span) return;
+  const current = catalogItems.find(it => it.id === id)?.name || span.textContent;
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = current;
+  input.style.cssText = 'flex:1; font-size:0.92rem; font-weight:600; padding:1px 6px;'
+    + 'border:1.5px solid #2d6a4f; border-radius:5px; background:#fff;';
+
+  // Capture button reference before any DOM manipulation
+  const renameBtn = span.nextElementSibling;
+
+  const restore = () => {
+    span.style.display = '';
+    if (renameBtn) renameBtn.style.display = '';
+    if (input.parentNode) input.remove();
+  };
+
+  const finish = async () => {
+    const newName = input.value.trim();
+    if (!newName || newName === current) { restore(); return; }
+    await fetch(`/api/catalog/items/${id}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name: newName}),
+    });
+    const item = catalogItems.find(it => it.id === id);
+    if (item) item.name = newName;
+    span.textContent = newName;
+    restore();
+  };
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter')  { e.preventDefault(); finish(); }
+    if (e.key === 'Escape') { document.removeEventListener('mousedown', onOutsideClick); restore(); }
+  });
+  // Save on click outside the input
+  const onOutsideClick = (e) => {
+    if (e.target !== input) { finish(); document.removeEventListener('mousedown', onOutsideClick); }
+  };
+  setTimeout(() => document.addEventListener('mousedown', onOutsideClick), 0);
+
+  if (renameBtn) renameBtn.style.display = 'none';
+  span.style.display = 'none';
+  span.parentNode.insertBefore(input, span.nextSibling);
+  input.focus(); input.select();
+}
+
+async function addCatalogItem() {
+  const inp = document.getElementById('new-item-name');
+  const name = inp.value.trim();
+  if (!name) { inp.focus(); return; }
+
+  const res  = await fetch('/api/catalog/items', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({name}),
+  });
+  const item = await res.json();
+  catalogItems.push(item);
+  inp.value = '';
+  renderCatalog();  // preserves existing selection
+  // Auto-select the newly added item so it joins the current selection
+  const chk = document.getElementById('chk-' + item.id);
+  if (chk) chk.checked = true;
+  updateSelCount();
+  // Auto-expand the new item
+  setTimeout(() => toggleCatItem(item.id), 50);
+}
+
+async function deleteCatalogItem(id) {
+  if (!confirm('Remove this item from the catalog?')) return;
+  await fetch(`/api/catalog/items/${id}`, {method: 'DELETE'});
+  catalogItems = catalogItems.filter(it => it.id !== id);
+  renderCatalog();
+}
+
+async function addUrl(itemId, banner) {
+  const inp = document.getElementById(`urlinput-${itemId}-${banner}`);
+  const url = inp.value.trim();
+  if (!url) { inp.focus(); return; }
+
+  const item = catalogItems.find(it => it.id === itemId);
+  if (!item) return;
+  item.urls[banner] = [...(item.urls[banner] || []), url];
+
+  await fetch(`/api/catalog/items/${itemId}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({urls: item.urls}),
+  });
+
+  inp.value = '';
+  // Re-render just this item's header badges + URL list (avoid full re-render which collapses items)
+  const catEl = document.getElementById(`catitem-${itemId}`);
+  const wasExpanded = catEl.classList.contains('expanded');
+  const wasChecked  = document.getElementById(`chk-${itemId}`)?.checked;
+  catEl.outerHTML = renderCatalogItem(item);
+  const newEl = document.getElementById(`catitem-${itemId}`);
+  if (wasExpanded) newEl.classList.add('expanded');
+  if (wasChecked)  document.getElementById(`chk-${itemId}`).checked = true;
+}
+
+async function removeUrl(itemId, banner, index) {
+  const item = catalogItems.find(it => it.id === itemId);
+  if (!item) return;
+  item.urls[banner] = (item.urls[banner] || []).filter((_, i) => i !== index);
+
+  await fetch(`/api/catalog/items/${itemId}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({urls: item.urls}),
+  });
+
+  const catEl = document.getElementById(`catitem-${itemId}`);
+  const wasExpanded = catEl.classList.contains('expanded');
+  const wasChecked  = document.getElementById(`chk-${itemId}`)?.checked;
+  catEl.outerHTML = renderCatalogItem(item);
+  const newEl = document.getElementById(`catitem-${itemId}`);
+  if (wasExpanded) newEl.classList.add('expanded');
+  if (wasChecked)  document.getElementById(`chk-${itemId}`).checked = true;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Start comparison — dynamic search
+───────────────────────────────────────────────────────── */
+async function startCompare() {
+  let items = [];
+  const activePane = document.querySelector('.tab-pane.active');
+  if (activePane.id === 'pane-type') {
+    items = document.getElementById('grocery-text').value
+      .split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  } else {
+    items = uploadedItems;
+  }
+  if (!items.length) { alert('Add at least one item.'); return; }
+  await runSSE('/api/compare', {items}, items.map(n=>({name:n})));
+}
+
+/* ─────────────────────────────────────────────────────────
+   Start comparison — catalog
+───────────────────────────────────────────────────────── */
+// "Compare All" = tick every catalog checkbox, then run the normal
+// "Compare Selected" flow. This keeps the selection state in sync so that
+// removing an item from the results also deselects it (see removeResultItem).
+function compareAll() {
+  document.querySelectorAll('.cat-check').forEach(el => { el.checked = true; });
+  updateSelCount();
+  startCatalogCompare(false);
+}
+
+async function startCatalogCompare(all = false) {
+  let items = catalogItems;
+  if (!all) {
+    const checkedIds = [...document.querySelectorAll('.cat-check:checked')].map(el => el.id.replace('chk-',''));
+    items = catalogItems.filter(it => checkedIds.includes(it.id));
+  }
+  if (!items.length) { alert('Select at least one item.'); return; }
+
+  // Show the results table in the same order as the catalog list, which is
+  // sorted alphabetically by name (see renderCatalog). Without this, rows
+  // appear in the order items were added to the catalog.
+  items = [...items].sort((a, b) => a.name.localeCompare(b.name));
+  const ids = items.map(it => it.id);
+  await runSSE('/api/catalog/compare', {ids}, items);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Shared SSE runner
+   items: [{name}] for display purposes
+───────────────────────────────────────────────────────── */
+async function runSSE(endpoint, body, items) {
+  allResults = {}; doneItems = 0; totalItems = items.length; _inProgress.clear();
+  removedAssignments = new Set();  // clear manual shopping-list removals for a fresh run
+  pinnedStores = {};               // clear session-only store pins for a fresh run
+
+  document.getElementById('progress-section').style.display = 'block';
+  document.getElementById('results-section').style.display  = 'block';
+  document.getElementById('results-tbody').innerHTML = '';
+  document.getElementById('res-count').textContent   = '0 items';
+  document.getElementById('btn-csv').disabled = true;
+  setProgress(0, totalItems, 'Starting…');
+
+  // Skeleton rows
+  items.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.id = rowId(item.name);
+    tr.className = 'row-pending';
+    tr.innerHTML = `<td><span class="item-name">${h(item.name)}</span></td>`
+      + STORES.map(() => `<td><span class="skel" style="width:${40+Math.random()*30|0}px"></span></td>`).join('');
+    document.getElementById('results-tbody').appendChild(tr);
+  });
+  document.getElementById('results-section').scrollIntoView({behavior:'smooth', block:'start'});
+
+  const btn1 = document.getElementById('btn-compare');
+  const btn2 = document.getElementById('btn-compare-catalog');
+  const btn3 = document.getElementById('btn-compare-all');
+  [btn1,btn2,btn3].forEach(b => { if(b) { b.disabled = true; b.textContent = 'Comparing…'; } });
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
+
+    const reader  = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, {stream: true});
+      const parts = buffer.split('\n\n');
+      buffer = parts.pop();
+      for (const part of parts) {
+        for (const line of part.split('\n')) {
+          if (line.startsWith('data: ')) {
+            try { handleSSE(JSON.parse(line.slice(6))); } catch(_) {}
+          }
+        }
+      }
+    }
+  } catch(e) {
+    document.getElementById('prog-text').textContent = 'Error: ' + e.message;
+  } finally {
+    btn1.textContent = '🔍 Compare Prices'; btn1.disabled = false;
+    if (btn2) { btn2.textContent = '🔍 Compare Selected'; btn2.disabled = false; }
+    if (btn3) { btn3.textContent = '🔍 Compare All';      btn3.disabled = false; }
+    updateSelCount();
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Handle SSE events
+   With parallel items, multiple "searching" events can arrive
+   simultaneously. We track all in-progress items and base the
+   progress bar on completed count, not arrival index.
+───────────────────────────────────────────────────────── */
+const _inProgress = new Set();  // item names currently being fetched
+
+function handleSSE(event) {
+  if (event.type === 'searching') {
+    _inProgress.add(event.item);
+    _updateProgressDisplay(event.total);
+  } else if (event.type === 'store_done') {
+    // store chips not shown in parallel mode — no-op
+  } else if (event.type === 'item_done') {
+    _inProgress.delete(event.item);
+    allResults[event.item] = {results: event.results, is_weight_item: event.is_weight_item, id: event.id};
+    doneItems++;
+    updateRow(event.item, event.results, event.is_weight_item, event.id);
+    _updateProgressDisplay(event.total);
+    document.getElementById('res-count').textContent = `${doneItems} of ${event.total} item(s)`;
+  } else if (event.type === 'all_done') {
+    setProgress(event.total, event.total, `All ${event.total} item(s) complete ✓`);
+    document.getElementById('current-item').style.display = 'none';
+    document.getElementById('btn-csv').disabled = false;
+    document.getElementById('res-count').textContent = `${event.total} item(s)`;
+    document.getElementById('btn-shoplist').style.display = event.total > 1 ? '' : 'none';
+    document.getElementById('shopping-section').style.display = 'none';
+  }
+}
+
+function _updateProgressDisplay(total) {
+  // Progress bar based on completed count
+  setProgress(doneItems, total,
+    doneItems >= total ? 'All done!' :
+    doneItems > 0      ? `${doneItems} of ${total} done` : 'Starting…'
+  );
+
+  // Show in-progress items
+  const names = [..._inProgress];
+  if (!names.length) {
+    document.getElementById('current-item').style.display = 'none';
+    return;
+  }
+  document.getElementById('current-item').style.display = 'block';
+  document.getElementById('curr-name').textContent =
+    names.length === 1
+      ? `Checking: ${names[0]}`
+      : `Checking: ${names.slice(0, 2).join(', ')}${names.length > 2 ? ` +${names.length - 2} more` : ''}`;
+
+  // Replace store chips with a simple "fetching" indicator when parallel
+  document.getElementById('store-chips').innerHTML = names.length > 1
+    ? `<span style="font-size:0.78rem;color:#2d6a4f;opacity:0.7">${names.length} items fetching in parallel…</span>`
+    : STORES.map(s =>
+        `<div class="store-chip chip-searching" id="chip-${slugify(s)}">
+           <div class="chip-dot"></div>${STORE_LABEL[s]}
+         </div>`
+      ).join('');
+}
+
+/* ─────────────────────────────────────────────────────────
+   Progress helpers
+───────────────────────────────────────────────────────── */
+function setProgress(done, total, label) {
+  const pct = total ? (done/total)*100 : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = label;
+  document.getElementById('prog-frac').textContent = total ? `${done} / ${total}` : '';
+}
+
+function setChip(banner, state) {
+  const el = document.getElementById('chip-' + slugify(banner));
+  if (!el) return;
+  el.className = `store-chip chip-${state}`;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Build / update result row
+───────────────────────────────────────────────────────── */
+/* Decide how to compare stores within one row.
+   If every store that has a price reports a per-unit price (per_lb/per_kg/
+   per_100g/per_100ml) we compare by that unit price — the true "best value".
+   If any store lacks a unit price, we fall back to comparing total price so we
+   never mix a per-100ml value against a whole-package price. Returns a per-
+   result basis() function and the winning value. */
+/* Convert a result's per-unit price to a canonical value so different units can
+   be compared correctly. Weight units all normalize to $/lb; volume units to
+   $/100ml. Returns {dim, val} or null when there is no usable per-unit price.
+   (1 lb = 453.592 g, so $X/100g = $X * 4.53592 per lb.) */
+function normalizedUnit(r) {
+  if (!r || r.comparison_price == null) return null;
+  const cp = r.comparison_price, pt = r.price_type;
+  switch (pt) {
+    case 'per_lb':    return { dim: 'weight', val: cp };
+    case 'per_kg':    return { dim: 'weight', val: cp / 2.2046 };   // → $/lb
+    case 'per_100g':  return { dim: 'weight', val: cp * 4.53592 };  // → $/lb
+    case 'per_100ml': return { dim: 'volume', val: cp };            // $/100ml
+    default:          return null;                                  // 'fixed' / unknown
+  }
+}
+
+function rowBasis(resultObjs) {
+  const priced = resultObjs.filter(r => r && r.comparison_price != null);
+  const norms  = priced.map(normalizedUnit);
+  // Only compare by unit price when every priced store has a usable per-unit
+  // price AND they are all the same dimension (all weight, or all volume) — so
+  // we never rank "$4.20/100g" ahead of "$15.99/lb" by comparing raw numbers.
+  const dims    = new Set(norms.filter(Boolean).map(n => n.dim));
+  const useUnit = priced.length > 0 && norms.every(n => n !== null) && dims.size === 1;
+  const basis = r => {
+    if (useUnit) { const n = normalizedUnit(r); return n ? n.val : Infinity; }
+    return (r.price ?? r.comparison_price);
+  };
+  const best = priced.length ? Math.min(...priced.map(basis)) : null;
+  return { basis, best, useUnit };
+}
+
+function updateRow(item, storeResults, isWeight, itemId = null) {
+  const tr = document.getElementById(rowId(item));
+  if (!tr) return;
+
+  const cp = {};
+  STORES.forEach(s => {
+    const r = storeResults[s];
+    if (Array.isArray(r) && r.length && r[0].comparison_price != null)
+      cp[s] = {v: r[0].comparison_price, r: r[0]};
+  });
+  const { basis, best, useUnit } = rowBasis(Object.values(cp).map(x => x.r));
+  // Session-only override: if the user pinned this item to a store that has a
+  // price, that store is treated as "best" regardless of the computed value.
+  const pinned = (pinnedStores[item] && cp[pinnedStores[item]]) ? pinnedStores[item] : null;
+  const itemEsc = item.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+
+  tr.className = 'row-new';
+  tr.innerHTML = `<td>
+    <span class="item-name">${h(item)}</span>
+    ${isWeight ? '<span class="weight-tag">🌿 per-lb</span>' : ''}
+    <button class="btn-remove-item" title="Remove item"
+            onclick="removeResultItem('${itemEsc}')">✕</button>
+  </td>` + STORES.map(s => {
+    const sd = storeResults[s];
+    if (!sd) return `<td><span class="na">—</span></td>`;
+    if (sd.error) {
+      const noLink = sd.error.startsWith('No products linked');
+      const errHtml = noLink
+        ? `<span style="font-size:0.75rem;color:#aaa">${h(sd.error)}</span>`
+        : `<span class="err">${h(sd.error)}</span>${itemId ? `<br><button class="btn-retry" onclick="retryStore('${itemId}','${item.replace(/'/g,"\\'")}','${s}')">↻ Retry</button>` : ''}`;
+      return `<td><span class="na">—</span><br>${errHtml}</td>`;
+    }
+    if (!cp[s])  return `<td><span class="na">N/A</span></td>`;
+
+    const {v, r} = cp[s];
+    const isPinnedHere = s === pinned;
+    const isBest = pinned ? isPinnedHere : (best != null && basis(r) === best);
+    const label  = [r.brand, r.name].filter(Boolean).join(' ');
+    const isPerLb = r.price_type === 'per_lb';
+    const isPerKg = r.price_type === 'per_kg';
+    const unit   = isPerLb ? 'lb' : isPerKg ? 'kg' : null;
+    const disp   = unit ? `$${v.toFixed(2)}/${unit}` : `$${(r.price ?? v).toFixed(2)}`;
+    const badge  = isPinnedHere ? '<span class="best-badge">📌 Pinned</span>'
+                 : (isBest ? '<span class="best-badge">✓ Best</span>' : '');
+    // When the row is compared by weight but this store quotes per-100g (not /lb),
+    // show the equivalent $/lb so the ranking is transparent.
+    const nrm = normalizedUnit(r);
+    const equiv = (useUnit && nrm && nrm.dim === 'weight' && r.price_type !== 'per_lb' && r.price_type !== 'per_kg')
+                ? `<span class="p-unit" style="color:#2d6a4f">≈ $${nrm.val.toFixed(2)}/lb</span>` : '';
+
+    return `<td class="${isBest ? 'best' : ''}">
+      <div class="pcell">
+        <a class="p-link" href="${h(r.url || '#')}" target="_blank" rel="noopener">
+          <span class="p-main">${h(disp)}</span>
+        </a>
+        ${unit ? `<span class="per-unit-tag">per ${unit}</span>` : ''}
+        ${!unit && r.unit_price ? `<span class="p-unit">${h(r.unit_price)}</span>` : ''}
+        ${equiv}
+        ${!unit && r.size ? `<span class="p-unit">${h(r.size)}</span>` : ''}
+        ${label ? `<span class="p-name" title="${h(label)}">${h(label)}</span>` : ''}
+        ${badge}
+        <button class="btn-pin ${isPinnedHere ? 'is-pinned' : ''}"
+                title="${isPinnedHere ? 'Unpin — go back to best price' : 'Buy this item from ' + STORE_LABEL[s]}"
+                onclick="togglePin('${itemEsc}','${s}')">${isPinnedHere ? '📌 Pinned' : '📌 Pin here'}</button>
+      </div>
+    </td>`;
+  }).join('');
+}
+
+/* ─────────────────────────────────────────────────────────
+   Session-only store pin: force an item to a chosen store
+   (e.g. when the site's per-unit price is based on the regular
+   price, not the sale price, so the computed "best" is wrong).
+───────────────────────────────────────────────────────── */
+function togglePin(item, store) {
+  if (pinnedStores[item] === store) delete pinnedStores[item];
+  else pinnedStores[item] = store;
+  const data = allResults[item];
+  if (data) updateRow(item, data.results, data.is_weight_item, data.id);
+  // Keep the shopping list in sync if it's already on screen.
+  if (document.getElementById('shopping-section').style.display !== 'none')
+    generateShoppingList();
+}
+
+/* ─────────────────────────────────────────────────────────
+   Single-store retry
+───────────────────────────────────────────────────────── */
+async function retryStore(itemId, itemName, store) {
+  const tr = document.getElementById(rowId(itemName));
+  if (!tr) return;
+  const storeIdx = STORES.indexOf(store);
+
+  // Show skeleton while waiting
+  const getCell = () => { const r = document.getElementById(rowId(itemName)); return r?.cells[storeIdx + 1]; };
+  const showRetryBtn = (msg) => {
+    clearInterval(_retryTimer);
+    const c = getCell();
+    if (c) c.innerHTML = `<span class="na">N/A</span><br><span class="err">${h(msg)}</span><br><button class="btn-retry" onclick="retryStore('${itemId}','${itemName.replace(/'/g,"\\'")}','${store}')">↻ Retry</button>`;
+  };
+
+  // Live spinner with elapsed-time counter
+  const startMs = Date.now();
+  const updateSpinner = () => {
+    const sec = Math.round((Date.now() - startMs) / 1000);
+    const c = getCell();
+    if (!c) return;
+    c.innerHTML =
+      `<span style="display:flex;align-items:center;gap:5px;justify-content:center;padding:4px 0">` +
+      `<span class="warmup-spin" style="border-color:rgba(45,106,79,.35);border-top-color:#2d6a4f"></span>` +
+      `<span style="font-size:0.72rem;color:#2d6a4f;font-weight:600">${sec}s</span></span>` +
+      `<span style="font-size:0.68rem;color:#888;display:block;text-align:center">${STORE_LABEL[store]}</span>`;
+  };
+  updateSpinner();
+  let _retryTimer = setInterval(updateSpinner, 1000);
+
+  let gotResult = false;
+  try {
+    const res = await fetch('/api/catalog/retry', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({item_id: itemId, store}),
+    });
+    if (!res.ok) throw new Error('Server error ' + res.status);
+
+    const reader  = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    while (true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, {stream: true});
+      const parts = buffer.split('\n\n');
+      buffer = parts.pop();
+      for (const part of parts) {
+        for (const line of part.split('\n')) {
+          if (!line.startsWith('data: ')) continue;
+          try {
+            const ev = JSON.parse(line.slice(6));
+            if (ev.type !== 'retry_done') continue;
+            gotResult = true;
+            clearInterval(_retryTimer);
+            if (allResults[ev.item]) allResults[ev.item].results[store] = ev.result;
+            updateRow(ev.item, allResults[ev.item]?.results ?? {}, ev.is_weight_item, ev.id);
+          } catch(_) {}
+        }
+      }
+    }
+  } catch(e) {
+    showRetryBtn(e.message);
+    return;
+  }
+
+  // If the stream ended without sending retry_done, restore the cell
+  if (!gotResult) showRetryBtn('No response from server — try again');
+}
+
+/* ─────────────────────────────────────────────────────────
+   CSV export
+───────────────────────────────────────────────────────── */
+function downloadCSV() {
+  const items = Object.keys(allResults);
+  if (!items.length) { alert('No results yet.'); return; }
+
+  const head = ['Item','Produce/Weight',
+    'Maxi Price','Maxi Unit','Provigo Price','Provigo Unit',
+    'Metro Price','Metro Unit','Super C Price','Super C Unit',
+    'Best Store','Best Price'];
+  const rows = [head];
+
+  items.forEach(item => {
+    const {results: row, is_weight_item: isW} = allResults[item];
+    const info = s => {
+      const r = (row[s] || []);
+      if (!Array.isArray(r) || !r.length) return ['N/A', ''];
+      const p = r[0], cp = p.comparison_price, pt = p.price_type;
+      const unit = pt === 'per_lb' ? 'lb' : pt === 'per_kg' ? 'kg' : null;
+      const disp = cp != null ? (unit ? `${cp.toFixed(2)}/${unit}` : (p.price != null ? p.price.toFixed(2) : '')) : 'N/A';
+      return [disp, p.unit_price || p.size || ''];
+    };
+    const cols = STORES.map(s => info(s));
+    const robjs = STORES.map(s => (Array.isArray(row[s]) && row[s].length) ? row[s][0] : null);
+    const { basis, best } = rowBasis(robjs.filter(Boolean));
+    let bestObj = null;
+    if (best != null) {
+      STORES.forEach((s, i) => {
+        const r = robjs[i];
+        if (!bestObj && r && r.comparison_price != null && basis(r) === best)
+          bestObj = { store: STORE_LABEL[s], cp: best };
+      });
+    }
+    rows.push([item, isW ? 'Yes' : 'No', ...cols.flatMap(c => c),
+      bestObj ? bestObj.store : 'N/A', bestObj ? bestObj.cp.toFixed(2) : 'N/A']);
+  });
+
+  const csv  = rows.map(r => r.map(v => `"${String(v ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob(['﻿' + csv], {type: 'text/csv;charset=utf-8;'});
+  const url  = URL.createObjectURL(blob);
+  Object.assign(document.createElement('a'), {
+    href: url, download: `grocery-prices-${new Date().toISOString().slice(0,10)}.csv`
+  }).click();
+  URL.revokeObjectURL(url);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Util
+───────────────────────────────────────────────────────── */
+function rowId(item) { return 'row-' + item.replace(/[^a-z0-9]/gi,'_'); }
+function slugify(s)  { return s.replace(/[^a-z0-9]/gi,'_'); }
+function h(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ─────────────────────────────────────────────────────────
+   Shopping List
+───────────────────────────────────────────────────────── */
+function generateShoppingList() {
+  const section = document.getElementById('shopping-section');
+  const grid    = document.getElementById('shopping-grid');
+
+  // Build per-store assignment: item goes to any store that ties for best price
+  const storeItems = { maxi: [], provigo: [], metro: [], superc: [] };
+
+  Object.entries(allResults).forEach(([itemName, {results, is_weight_item}]) => {
+    // Collect valid comparison prices
+    const cp = {};
+    STORES.forEach(s => {
+      const r = results[s];
+      if (Array.isArray(r) && r.length && r[0].comparison_price != null)
+        cp[s] = { v: r[0].comparison_price, r: r[0] };
+    });
+    if (!Object.keys(cp).length) return;
+    const { basis, best } = rowBasis(Object.values(cp).map(x => x.r));
+    if (best == null) return;
+    // Session-only override: a pinned store (that has a price) wins outright.
+    const pinned = (pinnedStores[itemName] && cp[pinnedStores[itemName]]) ? pinnedStores[itemName] : null;
+
+    STORES.forEach(s => {
+      if (!cp[s]) return;
+      if (pinned ? (s !== pinned) : (basis(cp[s].r) !== best)) return;  // not the chosen store
+      if (removedAssignments.has(s + '||' + itemName)) return;  // user removed this item from this store
+      const r   = cp[s].r;
+      const isPerLb = r.price_type === 'per_lb';
+      const isPerKg = r.price_type === 'per_kg';
+      const unit    = isPerLb ? 'lb' : isPerKg ? 'kg' : null;
+      const price   = unit ? `$${cp[s].v.toFixed(2)}/${unit}` : `$${(r.price ?? cp[s].v).toFixed(2)}`;
+      const name    = [r.brand, r.name].filter(Boolean).join(' ') || itemName;
+      storeItems[s].push({ category: itemName, name, price, url: r.url });
+    });
+  });
+
+  lastStoreItems = storeItems;
+
+  // Render columns — skip stores with no items
+  const activeStores = STORES.filter(s => storeItems[s].length > 0);
+  grid.innerHTML = activeStores.map(s => {
+    const items = storeItems[s];
+    const header = STORE_LABEL[s];
+    const rows = items.map(it => {
+      const catAttr = h(it.category).replace(/'/g, "\\'");
+      return `
+        <div class="shop-item">
+          <div class="shop-item-top">
+            <span class="shop-item-category">${h(it.category)}</span>
+            <button class="btn-remove-item" title="Remove from ${h(header)}"
+                    onclick="removeShopItem('${s}','${catAttr}')">×</button>
+          </div>
+          <a class="shop-item-name p-link" href="${h(it.url)}" target="_blank" rel="noopener"
+             title="${h(it.name)}">${h(it.name)}</a>
+          <span class="shop-item-price">${h(it.price)}</span>
+        </div>`;
+    }).join('');
+
+    return `<div class="shop-col shop-col-${s}">
+      <div class="shop-col-header">
+        <span>${header}</span>
+        <span class="item-count">${items.length} item${items.length !== 1 ? 's' : ''}</span>
+      </div>
+      <div class="shop-item-list">${rows}</div>
+    </div>`;
+  }).join('');
+
+  section.style.display = 'block';
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ─────────────────────────────────────────────────────────
+   Remove a single item from one store's shopping-list column
+   (e.g. when prices tie and you want to buy it from just one store)
+───────────────────────────────────────────────────────── */
+function removeShopItem(store, category) {
+  removedAssignments.add(store + '||' + category);
+  generateShoppingList();  // re-render; the removed assignment is now skipped
+}
+
+/* ─────────────────────────────────────────────────────────
+   Remove a single item from results
+───────────────────────────────────────────────────────── */
+function removeResultItem(itemName) {
+  // Deselect the matching catalog item so the next "Compare Selected" /
+  // "Compare All" run won't include it. (Removing an item from a single store
+  // in the shopping list uses removeShopItem instead and does NOT touch this.)
+  const meta = allResults[itemName];
+  if (meta && meta.id) {
+    const chk = document.getElementById('chk-' + meta.id);
+    if (chk) chk.checked = false;
+  }
+  delete allResults[itemName];
+  const tr = document.getElementById(rowId(itemName));
+  if (tr) tr.remove();
+  const remaining = Object.keys(allResults).length;
+  document.getElementById('res-count').textContent = `${remaining} item(s)`;
+  if (remaining <= 1) document.getElementById('btn-shoplist').style.display = 'none';
+  // Hide the shopping section since it's stale
+  document.getElementById('shopping-section').style.display = 'none';
+  updateSelCount();  // reflect the deselection in the catalog count/buttons
+}
+
+/* ─────────────────────────────────────────────────────────
+   Email shopping list via mailto
+───────────────────────────────────────────────────────── */
+function emailShoppingList() {
+  const si = lastStoreItems;
+  const activeStores = STORES.filter(s => si[s] && si[s].length > 0);
+  if (!activeStores.length) { alert('Generate a shopping list first.'); return; }
+
+  let body = 'Shopping List\n';
+  body += '='.repeat(30) + '\n\n';
+  activeStores.forEach(s => {
+    body += `${STORE_LABEL[s].toUpperCase()}\n`;
+    si[s].forEach(it => {
+      body += `  • ${it.category}  ${it.price}\n`;
+      body += `    ${it.name}\n`;
+    });
+    body += '\n';
+  });
+
+  const subject = encodeURIComponent('Grocery Shopping List');
+  const bodyEnc = encodeURIComponent(body);
+  window.location.href = `mailto:zaltanis@gmail.com?subject=${subject}&body=${bodyEnc}`;
+}
+
+/* Allow pressing Enter in the new-item input */
+document.getElementById('new-item-name').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addCatalogItem();
+});
+
+/* ── Warmup status pill ───────────────────────────────── */
+const warmupPill = document.getElementById('warmup-pill');
+const warmupSpin = document.getElementById('warmup-spin');
+const warmupText = document.getElementById('warmup-text');
+
+warmupPill.addEventListener('click', async () => {
+  if (warmupPill.classList.contains('warmup-running')) return;
+  await fetch('/api/warmup', {method: 'POST'});
+  setWarmupRunning();
+  pollWarmup();
+});
+
+function setWarmupRunning() {
+  warmupPill.className = 'warmup-pill warmup-running';
+  warmupSpin.style.display = 'inline-block';
+  warmupText.textContent = 'Warming up…';
+}
+
+async function pollWarmup() {
+  try {
+    const res = await fetch('/api/warmup-status');
+    const data = await res.json();
+    if (data.state === 'running') {
+      warmupText.textContent = data.message || 'Warming up…';
+      setTimeout(pollWarmup, 1500);
+    } else if (data.state === 'ready') {
+      warmupPill.className = 'warmup-pill warmup-ready';
+      warmupSpin.style.display = 'none';
+      warmupText.textContent = data.message || 'Ready ✓';
+    } else {
+      warmupPill.className = 'warmup-pill warmup-warn';
+      warmupSpin.style.display = 'none';
+      warmupText.textContent = data.message || 'Click to retry';
+    }
+  } catch(_) {
+    setTimeout(pollWarmup, 2000);
+  }
+}
+
+pollWarmup();
+
+// Metro store setup
+const metroBtn = document.getElementById('metro-setup-btn');
+const metroStatus = document.getElementById('metro-setup-status');
+
+async function pollMetroSetup() {
+  try {
+    const res = await fetch('/api/metro-setup-status');
+    const data = await res.json();
+    if (data.state === 'idle') return;
+    metroStatus.style.display = 'inline';
+    metroStatus.textContent = data.message || '';
+    if (data.state === 'running') {
+      metroBtn.disabled = true;
+      metroBtn.textContent = '🏪 Setting up…';
+      setTimeout(pollMetroSetup, 2000);
+    } else {
+      metroBtn.disabled = false;
+      metroBtn.textContent = '🏪 Metro Store';
+      metroStatus.style.color = data.state === 'done' ? '#7fc97f' : '#f4a261';
+      setTimeout(() => { metroStatus.style.display = 'none'; }, 8000);
+    }
+  } catch(_) {
+    setTimeout(pollMetroSetup, 2000);
+  }
+}
+
+metroBtn.addEventListener('click', async () => {
+  metroBtn.disabled = true;
+  metroBtn.textContent = '🏪 Opening browser…';
+  metroStatus.style.display = 'inline';
+  metroStatus.style.color = '#aaa';
+  metroStatus.textContent = 'Launching…';
+  await fetch('/api/metro-setup', {method: 'POST'});
+  pollMetroSetup();
+});
+</script>
+</body>
+</html>
